@@ -1,0 +1,337 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap');
+
+/* Estilos globales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #FAFAFA;
+}
+
+.header {
+    background-color: #FAFAFA;
+    padding: 20px 0;
+}
+
+.menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+}
+
+.logo {
+    font-size: 25px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #02B1F4;
+}
+
+.menu .navbar {
+    display: flex;
+    align-items: center;
+}
+
+.menu .navbar ul {
+    display: flex;
+    justify-content: space-between;
+}
+
+.menu .navbar ul li {
+    list-style-type: none;
+}
+
+.menu .navbar ul li a {
+    color: #323232;
+    padding: 15px;
+    text-decoration: none;
+}
+
+.menu .navbar ul li a:hover {
+    color: #02B1F4;
+}
+#cerrar:hover {
+    color:  #f4023e;
+}
+
+/* Estilos para la bienvenida */
+.container-text {
+    text-align: center;
+    padding: 40px 0; /* Añadimos padding para dar espacio */
+}
+
+.container-text h2 {
+    font-size: 35px;
+    color: #323232;
+    text-transform: uppercase;
+}
+
+.container-text p {
+    font-size: 18px;
+    color: #818181;
+}
+
+/* Estilos para el pie de página */
+.footer {
+    text-align: center;
+    padding: 30px;
+    background-color: #FAFAFA;
+}
+
+.footer p {
+    font-size: 16px;
+    color: #323232;
+}
+/* Estilos para la sección de productos */
+.header-content {
+    padding: 20px 0;
+}
+
+.header-txt h1{
+    font-size: 30px;
+    color: #323232;
+    text-align: center;
+}
+
+.header-txt h2 , h3{
+    color: #323232;
+    text-align: center;
+    margin: 20px;
+}
+
+.header-catalogo {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.filtro-tipo {
+    border: none;
+}
+
+.boton-menu {
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.boton-menu a {
+    text-decoration: none;
+    color: #323232;
+    font-size: 16px;
+}
+
+.boton-menu a:hover {
+    color: #02B1F4;
+}
+
+
+
+/* Estilo para formularios minimalistas */
+.formulario {
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    margin-top: 20px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.formulario h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 15px; /* Espaciado entre los campos */
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.input-container label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 5px;
+}
+
+.input-container input,
+.input-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+.input-container input:focus,
+.input-container select:focus {
+    border-color: #66afe9;
+    outline: none;
+}
+
+.btn {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #555;
+}
+
+
+
+/* Estilos para el área de productos */
+.contenedor-productos {
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.producto {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    padding: 10px;
+}
+
+.producto img {
+    max-width: 100%;
+    border-radius: 10px;
+}
+
+.producto-detalle {
+    text-align: center;
+}
+
+.producto-titulo {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.producto-precio {
+    color: #333;
+    font-weight: bold;
+}
+
+.producto-cantidad {
+    font-size: 14px;
+    color: #555;
+}
+.limpiar{
+    clear: both;
+}
+
+.contenedor-productos {
+    display: flex;
+    flex-direction: row; /* Alineación horizontal */
+    flex-wrap: nowrap; /* Mantener en una línea */
+    justify-content: center; /* Centrar horizontalmente */
+    overflow-x: auto; /* Permite desplazamiento horizontal si es necesario */
+    gap: 20px; /* Espacio entre productos */
+    padding: 20px;
+    background-color: #f9f9f9; /* Fondo claro para resaltar el contenido */
+}
+
+.all {
+    display: flex;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten a varias líneas si es necesario */
+    gap: 20px; /* Espacio entre productos */
+}
+
+/* Estilo para cada producto */
+.producto {
+    flex: 1 1 200px; /* Los productos se expandirán o contraerán según el espacio disponible */
+    max-width: 300px; /* Limita el tamaño máximo de un producto */
+    width: 200px; /* Ancho fijo para consistencia */
+    background-color: white;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s; /* Efecto suave al pasar el mouse */
+
+}
+
+.producto img {
+    width: 100%; /* Asegura que la imagen ocupe todo el ancho */
+    height: 200px; /* Altura fija para consistencia */
+    object-fit: cover; /* Evita distorsión */
+    border-radius: 10px; /* Bordes redondeados */
+}
+
+
+.producto:hover {
+    transform: scale(1.05); /* Efecto de ampliación al pasar el mouse */
+}
+
+
+
+/* Estilo para detalles del producto */
+.producto-detalle {
+    text-align: center; /* Centrar texto */
+    padding-top: 10px; /* Espacio entre imagen y detalles */
+}
+
+.producto-titulo {
+    font-size: 16px;
+    color: #333;
+}
+
+.producto-precio,
+.producto-stock {
+    font-size: 14px;
+    color: #555;
+}
+
+/* Estilos para la tabla */
+.table {
+    width: 100%; /* Ancho completo */
+    border-collapse: collapse; /* Elimina espacios entre celdas */
+    background-color: white; /* Fondo blanco para la tabla */
+    margin: 20px 0; /* Espacio antes y después de la tabla */
+    border-radius: 10px; /* Bordes redondeados */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Sombra para profundidad */
+}
+
+.table th,
+.table td {
+    padding: 10px; /* Espacio interno para celdas */
+    border: 1px solid #ddd; /* Bordes ligeros */
+    text-align: left; /* Alineación del texto a la izquierda */
+}
+
+.table th {
+    background-color: #f0f0f0; /* Fondo claro para los encabezados */
+    font-weight: bold; /* Negrita para los encabezados */
+    text-transform: uppercase; /* Texto en mayúsculas */
+}
+
+.table tr:nth-child(even) {
+    background-color: #f9f9f9; /* Fondo alternado para filas pares */
+}
+
+.table tr:hover {
+    background-color: #f0f0f0; /* Cambio de fondo al pasar el mouse */
+}

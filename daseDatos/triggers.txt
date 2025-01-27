@@ -1,0 +1,174 @@
+-- Trigers
+-- Clientes
+DELIMITER //
+CREATE TRIGGER gestioninv.trg_Clientes_Insert
+AFTER INSERT ON gestioninv.Clientes
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'INSERCIÓN', CONCAT('Inserción de cliente ', NEW.Cedula), NOW(), 'Clientes');
+END//
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER gestioninv.trg_Clientes_Update
+AFTER UPDATE ON gestioninv.Clientes
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'ACTUALIZACIÓN', CONCAT('Actualización de cliente ', NEW.Cedula), NOW(), 'Clientes');
+END//
+
+DELIMITER ;
+
+DELIMITER //
+
+CREATE TRIGGER gestioninv.trg_Clientes_Delete
+AFTER DELETE ON gestioninv.Clientes
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'ELIMINACIÓN', CONCAT('Eliminación de cliente ', OLD.Cedula), NOW(), 'Clientes');
+END//
+
+DELIMITER ;
+
+-- --------------------------------------------------------------- Proveedores
+DELIMITER //
+
+-- Trigger para INSERT en Proveedores
+CREATE TRIGGER gestioninv.trg_Proveedores_Insert
+AFTER INSERT ON gestioninv.Proveedores
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'INSERCIÓN', CONCAT('Inserción de proveedor ', NEW.Cedula), NOW(), 'Proveedores');
+END//
+
+-- Trigger para UPDATE en Proveedores
+CREATE TRIGGER gestioninv.trg_Proveedores_Update
+AFTER UPDATE ON gestioninv.Proveedores
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'ACTUALIZACIÓN', CONCAT('Actualización de proveedor ', NEW.Cedula), NOW(), 'Proveedores');
+END//
+
+-- Trigger para DELETE en Proveedores
+CREATE TRIGGER gestioninv.trg_Proveedores_Delete
+AFTER DELETE ON gestioninv.Proveedores
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'ELIMINACIÓN', CONCAT('Eliminación de proveedor ', OLD.Cedula), NOW(), 'Proveedores');
+END//
+
+DELIMITER ;
+
+-- ---------------------------------------------------------------  Productos
+DELIMITER //
+
+-- Trigger para INSERT en Productos
+CREATE TRIGGER gestioninv.trg_Productos_Insert
+AFTER INSERT ON gestioninv.Productos
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'INSERCIÓN', CONCAT('Inserción de producto ', NEW.ProductoID), NOW(), 'Productos');
+END//
+
+-- Trigger para UPDATE en Productos
+CREATE TRIGGER gestioninv.trg_Productos_Update
+AFTER UPDATE ON gestioninv.Productos
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'ACTUALIZACIÓN', CONCAT('Actualización de producto ', NEW.ProductoID), NOW(), 'Productos');
+END//
+
+-- Trigger para DELETE en Productos
+CREATE TRIGGER gestioninv.trg_Productos_Delete
+AFTER DELETE ON gestioninv.Productos
+FOR EACH ROW
+BEGIN
+    DECLARE usuario_cedula VARCHAR(10);
+    DECLARE usuario_nombre_apellido VARCHAR(100);
+
+    -- Obtener la cédula del usuario y su nombre/apellido
+    SET usuario_cedula = @usuario_cedula;
+    SET usuario_nombre_apellido = (SELECT CONCAT(nombre, ' ', apellido) FROM usuarios WHERE cedula = usuario_cedula);
+
+    -- Insertar en la tabla de auditoría
+    INSERT INTO gestioninv.Auditoria (usuario_cedula, usuario, accion, descripcion, fecha, tabla)
+    VALUES (usuario_cedula, usuario_nombre_apellido, 'ELIMINACIÓN', CONCAT('Eliminación de producto ', OLD.ProductoID), NOW(), 'Productos');
+END//
+
+DELIMITER ;
+
+

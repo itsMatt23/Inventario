@@ -1,0 +1,130 @@
+create database gestioninv;
+
+CREATE TABLE gestioninv.rol (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nombre VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE gestioninv.Clientes (
+    Cedula VARCHAR(10) PRIMARY KEY,
+    Nombre VARCHAR(100),
+    Apellido VARCHAR(100),
+    Ciudad VARCHAR(100),
+    Direccion VARCHAR(255),
+    Telefono VARCHAR(20),
+    Email VARCHAR(100),
+	contrasena VARCHAR(10) NOT NULL
+);
+
+-- Table for storing supplier information
+CREATE TABLE gestioninv.Proveedores (
+	Cedula VARCHAR(10) PRIMARY KEY,
+    Nombre VARCHAR(100),
+    Apellido VARCHAR(100),
+    Ciudad VARCHAR(100),
+    Direccion VARCHAR(255),
+    Telefono VARCHAR(20),
+    Email VARCHAR(100),
+	contrasena VARCHAR(10) NOT NULL
+);
+
+select * from gestioninv.Proveedores;
+
+
+-- Table for storing user information
+CREATE TABLE gestioninv.Usuarios (
+	Cedula VARCHAR(10) PRIMARY KEY,    
+    Nombre VARCHAR(100),
+    Apellido VARCHAR(100),
+    Ciudad VARCHAR(100),
+    Direccion VARCHAR(255),
+    Telefono VARCHAR(20),
+    Email VARCHAR(100),
+	contrasena VARCHAR(10) NOT NULL,
+    rol_id INT,
+    FOREIGN KEY (rol_id) REFERENCES rol(id)
+);
+
+-- Table for storing product information
+CREATE TABLE gestioninv.Productos (
+    ProductoID INT PRIMARY KEY AUTO_INCREMENT,
+    Nombre VARCHAR(100),
+    Descripcion VARCHAR(255),
+    PrecioPublico DECIMAL(10, 2),
+    Stock INT,
+    img varchar(255),
+    Categoria int,
+    FOREIGN KEY (Categoria) REFERENCES gestioninv.Categorias(CategoriaID)
+);
+select * from gestioninv.categorias;
+-- Table for storing product entries
+select * from gestioninv.IngresoProduco;
+select * from gestioninv.DetalleIngresoProducto;
+select * from gestioninv.VentaProducto;
+select * from gestioninv.DetalleVentaProducto;
+select * from gestioninv.Productos;
+
+CREATE TABLE gestioninv.IngresoProduco (
+    IngresoID INT PRIMARY KEY AUTO_INCREMENT,
+    ProveedorCedula VARCHAR(10), -- Clave foránea que coincide con Cedula
+    UsuarioCedula VARCHAR(10),   -- Clave foránea que coincide con Cedula
+    Fecha DATETIME,
+	Total DECIMAL(10, 2),
+    FOREIGN KEY (ProveedorCedula) REFERENCES Proveedores(Cedula), -- Referencia a Cedula en Proveedores
+    FOREIGN KEY (UsuarioCedula) REFERENCES Usuarios(Cedula)       -- Referencia a Cedula en Usuarios
+);
+
+-- Table for storing the details of each product entry
+CREATE TABLE gestioninv.DetalleIngresoProducto (
+    DetalleIngresoID INT PRIMARY KEY AUTO_INCREMENT,
+    IngresoID INT,
+    ProductoID INT,
+    Cantidad INT,
+    precioCompra DECIMAL(10, 2),
+	subTotal DECIMAL(10, 2),
+    FOREIGN KEY (IngresoID) REFERENCES IngresoProduco(IngresoID),
+    FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
+);
+
+
+
+-- Table for storing product sales
+CREATE TABLE gestioninv.VentaProducto (
+    VentaID INT PRIMARY KEY AUTO_INCREMENT,
+	ClienteCedula VARCHAR(10),
+    UsuarioCedula VARCHAR(10),
+    Fecha DATETIME,
+    Total DECIMAL(10, 2),
+    FOREIGN KEY (ClienteCedula) REFERENCES Clientes(Cedula),
+    FOREIGN KEY (UsuarioCedula) REFERENCES Usuarios(Cedula)
+);
+
+-- Table for storing the details of each product sale
+CREATE TABLE gestioninv.DetalleVentaProducto (
+    DetalleVentaID INT PRIMARY KEY AUTO_INCREMENT,
+    VentaID INT,
+    ProductoID INT,
+    Cantidad INT,
+    precioPublico DECIMAL(10, 2),
+	subTotal DECIMAL(10, 2),
+    FOREIGN KEY (VentaID) REFERENCES VentaProducto(VentaID),
+    FOREIGN KEY (ProductoID) REFERENCES Productos(ProductoID)
+);
+
+CREATE TABLE gestioninv.Auditoria (
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    usuario_cedula VARCHAR(10),
+    usuario varchar(50) not null,
+	accion varchar(50) not null,
+    descripcion text,
+	fecha datetime,
+    tabla VARCHAR(100)
+);
+
+
+
+
+paleta de colores:
+#FAFAFA;
+#02B1F4;
+#323232;
